@@ -55,7 +55,7 @@ export const CartSidebar = () => {
                             <p className="text-lg font-bold text-gray-900 dark:text-white mb-2">Tu carrito está vacío</p>
                             <p className="text-sm text-gray-400 mb-8">¡Las ofertas virales se acaban rápido!</p>
                             <button
-                                onClick={toggleCart}
+                                onClick={() => setIsOpen(false)}
                                 className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
                             >
                                 Ver Ofertas

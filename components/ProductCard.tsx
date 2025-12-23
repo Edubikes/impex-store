@@ -15,7 +15,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ id, title, price, image, description, isAdminPreview = false }: ProductCardProps) => {
-    const { addToCart } = useCart();
+    const { addItem } = useCart();
     const { formatPrice } = useCurrency();
 
     // Generate a random "Sold" number for social proof (deterministic based on title length)
@@ -44,7 +44,7 @@ export const ProductCard = ({ id, title, price, image, description, isAdminPrevi
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     {!isAdminPreview && (
                         <button
-                            onClick={() => addToCart({ id, title, price, image })}
+                            onClick={() => addItem({ id, title, price, image })}
                             className="bg-white text-gray-900 font-bold py-3 px-6 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all flex items-center gap-2 hover:bg-amber-400"
                         >
                             <ShoppingCart className="w-5 h-5" /> Agregar

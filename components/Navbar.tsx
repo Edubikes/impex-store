@@ -6,8 +6,10 @@ import { useCart } from '@/context/CartContext';
 import { useCurrency } from '@/context/CurrencyContext';
 
 export const Navbar = () => {
-    const { totalItems, toggleCart } = useCart();
-    const { currency, toggleCurrency } = useCurrency();
+    const { items, setIsOpen } = useCart();
+    const { currency, setCurrency } = useCurrency();
+
+    const toggleCurrency = () => setCurrency(currency === 'USD' ? 'MXN' : 'USD');
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-all duration-300">
@@ -45,13 +47,13 @@ export const Navbar = () => {
                         </button>
 
                         <button
-                            onClick={toggleCart}
+                            onClick={() => setIsOpen(true)}
                             className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors group"
                         >
                             <ShoppingCart className="w-6 h-6 text-gray-700 dark:text-white group-hover:text-blue-600 transition-colors" />
-                            {totalItems > 0 && (
+                            {items.length > 0 && (
                                 <span className="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md animate-bounce">
-                                    {totalItems}
+                                    {items.length}
                                 </span>
                             )}
                         </button>
