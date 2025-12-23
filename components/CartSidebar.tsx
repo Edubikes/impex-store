@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SiWhatsapp } from 'react-icons/si';
 
 export const CartSidebar = () => {
-    const { items, removeFromCart, clearCart, totalUSD, toggleCart, isOpen } = useCart();
+    const { items, removeItem, clearCart, totalUSD, setIsOpen, isOpen } = useCart();
     const { formatPrice, currency } = useCurrency();
 
     const handleCheckout = () => {
@@ -43,7 +43,7 @@ export const CartSidebar = () => {
                             <ShoppingBag className="w-5 h-5 text-blue-600" /> Tu Carrito
                             <span className="text-sm font-normal text-gray-500">({items?.length || 0} ítems)</span>
                         </h2>
-                        <button onClick={toggleCart} className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-gray-500 transition-colors">
+                        <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-gray-500 transition-colors">
                             <X className="w-6 h-6" />
                         </button>
                     </div>
@@ -80,7 +80,7 @@ export const CartSidebar = () => {
                                                 <p className="text-blue-600 font-bold">{formatPrice(item.price)}</p>
                                                 <div className="flex items-center justify-between mt-2">
                                                     <span className="text-xs text-gray-400">Cant: {item.quantity}</span>
-                                                    <button onClick={() => removeFromCart(item.id)} className="text-red-400 hover:text-red-600 transition-colors p-1">
+                                                    <button onClick={() => removeItem(item.id)} className="text-red-400 hover:text-red-600 transition-colors p-1">
                                                         <Trash2 className="w-4 h-4" />
                                                     </button>
                                                 </div>
@@ -127,7 +127,7 @@ export const CartSidebar = () => {
                 isOpen && (
                     <div
                         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity"
-                        onClick={toggleCart}
+                        onClick={() => setIsOpen(false)}
                     />
                 )
             }
