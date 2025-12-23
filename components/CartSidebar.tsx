@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SiWhatsapp } from 'react-icons/si';
 
 export const CartSidebar = () => {
-    const { cart: items, removeFromCart, clearCart, totalUSD, toggleCart, isOpen } = useCart();
+    const { items, removeFromCart, clearCart, totalUSD, toggleCart, isOpen } = useCart();
     const { formatPrice, currency } = useCurrency();
 
     const handleCheckout = () => {
